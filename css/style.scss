@@ -1,8 +1,46 @@
-// @import 'reset';
+@import 'reset';
 @import "grid";
 @import "variaveis-e-mixins";
 
-body {
-  font-family: "Aref Ruqaa", serif;
-  font-family: "PT Mono", monospace;
+// Estilos Gerais
+body{
+    background: $cor-primaria;
+    border: 10px solid $cor-bordas;
+    color: $cor-titulos;
+    @include device(small){
+        border: none;
+    }
 }
+
+img {
+    display: block;
+    max-width: 100%;
+}
+
+p {
+    @include tipografia-1(18);
+}
+
+.titulo {
+    @include tipografia-1(18);
+    text-transform: uppercase;
+    @include device(small) {
+        margin-bottom: 40px;
+    }
+    &::after {
+        content: "";
+        display: block;
+        width: 75%;
+        float: right;
+        height: 2px;
+        margin-top: 14px;
+        background: $cor-titulos;
+        @include device(medium){
+            width: 60%;
+        }
+    }
+}
+
+// Introdução
+
+
