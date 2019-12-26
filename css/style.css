@@ -167,4 +167,9 @@
   display: table;
   clear: both;
 }
+
+body {
+  font-family: "Aref Ruqaa", serif;
+  font-family: "PT Mono", monospace;
+}
 /*# sourceMappingURL=style.css.map */
