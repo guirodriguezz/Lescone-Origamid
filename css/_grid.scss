@@ -30,29 +30,97 @@ $small-device: 480px;
 }
 
 // Função do grid
+@function grid($col, $offset: false) {
+  $width: $col / $colunas * 100 + 0%;
+  $result: calc(#{$width} - #{$gutter});
+  @if $offset == offset {
+    $gutter: $gutter/ 2;
+    $result: calc(#{$width} - #{$gutter});
+  }
+  @return $result;
+}
 
+// Gera as classes de grid
+@for $i from 1 through $colunas {
+  .grid-#{$i} {
+    width: grid($i);
+  }
+}
 
+// Mixin de estrutura do grid
+@mixin grid-structure {
+  float: left;
+  min-height: 1px;
+  margin-left: $gutter / 2;
+  margin-right: $gutter / 2;
+  @include device(small) {
+    width: 100%;
+    float: none;
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+}
 
+[class^="grid-"] {
+  @include grid-structure();
+}
 
+// Gera as classes de offset
+@for $i from 1 through $colunas {
+  .offset-#{$i} {
+    margin-left: grid($i, offset);
+    @extend %offset;
+  }
+}
 
+@include device(small) {
+  %offset {
+    margin-left: 0px;
+  }
+}
 
+// Mixin do clearfix
 
+@mixin clearfix {
+  &::after,
+  &::before {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
 
+@mixin container {
+  max-width: $large-device;
+  margin: 0px auto;
+  position: relative;
+  @include device(medium) {
+    max-width: $medium-device;
+  }
+  @include device(small) {
+    max-width: $small-device;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  @include clearfix();
+}
 
+.container {
+  @include container();
+}
 
+// Usar quando quiser elemento dentro de elemento
+@mixin row {
+  position: relative;
+  margin-left: -$gutter / 2;
+  margin-right: -$gutter / 2;
+  @include device(small) {
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+  @include clearfix();
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+.row {
+    @include row();
+}
