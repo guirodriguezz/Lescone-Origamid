@@ -80,7 +80,6 @@ $small-device: 480px;
 }
 
 // Mixin do clearfix
-
 @mixin clearfix {
   &::after,
   &::before {
