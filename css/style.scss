@@ -1,4 +1,4 @@
-@import 'reset';
+@import "reset";
 @import "grid";
 
 // Cores
@@ -14,179 +14,254 @@ $font-2: "Aref Ruqaa", serif;
 
 // Conversor de pixels para em
 @function converter-px($pixel, $contexto: 16) {
-    @return $pixel / $contexto + em;
+  @return $pixel / $contexto + em;
 }
 
 // Tipografias do site
 @mixin tipografia-1($size) {
-    font-family: $font-1;
-    @if $size == 18 {
-        font-size: converter-px(18);
-        line-height: converter-px(30, 18);
-    }
+  font-family: $font-1;
+  @if $size == 18 {
+    font-size: converter-px(18);
+    line-height: converter-px(30, 18);
+  }
 }
 
 @mixin tipografia-2($size) {
-    font-family: $font-2;
-    @if $size == 18 {
-        font-size: converter-px(18);
-        line-height: converter-px(30, 18);
-    }
-    @else if $size == 24 {
-        font-size: converter-px(24);
-        line-height: converter-px(30, 24);
-    }
+  font-family: $font-2;
+  @if $size == 18 {
+    font-size: converter-px(18);
+    line-height: converter-px(30, 18);
+  } @else if $size == 24 {
+    font-size: converter-px(24);
+    line-height: converter-px(30, 24);
+  }
 }
 
+// Box-shadow
+@mixin box-shadow($shadow...) {
+  -webkit-box-shadow: $shadow;
+  -moz-box-shadow: $shadow;
+  box-shadow: $shadow;
+}
 
 // Estilos Gerais
-body{
-    background: $cor-primaria;
-    border: 10px solid $cor-bordas;
-    color: $cor-titulos;
-    @include device(small){
-        border: none;
-    }
+body {
+  background: $cor-primaria;
+  border: 10px solid $cor-bordas;
+  color: $cor-titulos;
+  @include device(small) {
+    border: none;
+  }
 }
 
 img {
-    display: block;
-    max-width: 100%;
+  display: block;
+  max-width: 100%;
 }
 
 p {
-    @include tipografia-1(18);
+  @include tipografia-1(18);
 }
 
 .titulo {
-    @include tipografia-1(18);
-    text-transform: uppercase;
-    @include device(small) {
-        margin-bottom: 40px;
+  @include tipografia-1(18);
+  text-transform: uppercase;
+  @include device(small) {
+    margin-bottom: 40px;
+  }
+  &::after {
+    content: "";
+    display: block;
+    width: 75%;
+    float: right;
+    height: 2px;
+    margin-top: 14px;
+    background: $cor-titulos;
+    @include device(medium) {
+      width: 60%;
     }
-    &::after {
-        content: "";
-        display: block;
-        width: 75%;
-        float: right;
-        height: 2px;
-        margin-top: 14px;
-        background: $cor-titulos;
-        @include device(medium){
-            width: 60%;
-        }
-    }
+  }
 }
 
 // Introdução
-
 .intro {
-    margin-top: 60px;
-    @include device(small) {
-        margin-top: 20px;
-    }
+  margin-top: 60px;
+  @include device(small) {
+    margin-top: 20px;
+  }
 }
 
 .logo {
-    margin-bottom: 60px;
+  margin-bottom: 60px;
 }
 
 .intro-info {
-    border-right: 2px solid $cor-titulos;
-    max-width: 320px;
-    p {
-        padding-top: 10px;
-        &:first-child {
-            border-bottom: 2px solid $cor-titulos;
-            padding-bottom: 10px;
-        }
+  border-right: 2px solid $cor-titulos;
+  max-width: 320px;
+  p {
+    padding-top: 10px;
+    &:first-child {
+      border-bottom: 2px solid $cor-titulos;
+      padding-bottom: 10px;
     }
+  }
 }
 
 .intro-telefone {
-    color: $cor-secundaria;
+  color: $cor-secundaria;
+  @include device(small) {
+    margin-bottom: 40px;
+  }
+  &::after {
+    content: "/ / / /";
+    display: block;
+    margin-top: 200px;
+    font-size: 220px;
+    letter-spacing: -90px;
+    color: $cor-titulos;
+    @include device(medium) {
+      margin-top: 80px;
+      font-size: 160px;
+      letter-spacing: -70px;
+    }
     @include device(small) {
-        margin-bottom: 40px;
+      display: none;
     }
-    &::after {
-        content: '/ / / /';
-        display: block;
-        margin-top: 200px;
-        font-size: 220px;
-        letter-spacing: -90px;
-        color: $cor-titulos;
-        @include device(medium) {
-            margin-top: 80px;
-            font-size: 160px;
-            letter-spacing: -70px;
-        }
-        @include device(small) {
-            display: none;
-        }
-    }
+  }
 }
 
 .aberto {
-    display: inline-block;
-    width: 12px;
-    height: 12px;
-    background: $local-aberto;
-    border-radius: 50%;
-    margin-left: 30px;
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  background: $local-aberto;
+  border-radius: 50%;
+  margin-left: 30px;
 }
 
 .intro-foto {
-    border: 10px solid $cor-bordas;
-    width: 100%;
+  border: 10px solid $cor-bordas;
+  width: 100%;
 }
 
 // Menu
 .menu {
-    margin-top: 120px;
-    margin-bottom: 120px;
-    @include device(small) {
-        margin-top: 60px;
-        margin-bottom: 60px;
-    }
+  margin-top: 120px;
+  margin-bottom: 120px;
+  @include device(small) {
+    margin-top: 60px;
+    margin-bottom: 60px;
+  }
 }
 
 .menu-item {
-    margin-bottom: 60px;
-    h2 {
-        @include tipografia-2(24);
-        margin-bottom: 1em;
+  margin-bottom: 60px;
+  h2 {
+    @include tipografia-2(24);
+    margin-bottom: 1em;
+  }
+  li {
+    @include tipografia-1(18);
+    line-height: converter-px(35, 18);
+    span {
+      font-family: $font-2;
+      color: $cor-secundaria;
+      display: inline-block;
+      width: 70px;
+      text-align: right;
+      margin-right: 10px;
+      margin-left: -80px;
+      @include device(small) {
+        margin-left: 0px;
+        width: auto;
+      }
     }
-    li {
-        @include tipografia-1(18);
-        line-height: converter-px(35, 18);
-        span {
-            font-family: $font-2;
-            color: $cor-secundaria;
-            display: inline-block;
-            width: 70px;
-            text-align: right;
-            margin-right: 10px;
-            margin-left: -80px;
-            @include device(small) {
-                margin-left: 0px;
-                width: auto;
-            }
-        }
+  }
+  img {
+    border-radius: 50%;
+    border: 10px solid $cor-bordas;
+    position: absolute;
+    right: 0px;
+    margin-top: 30px;
+    @include device(large) {
+      right: 120px;
     }
-    img {
-        border-radius: 50%;
-        border: 10px solid $cor-bordas;
-        position: absolute;
-        right: 0px;
-        margin-top: 30px;
-        @include device(large) {
-            right: 120px;
-        }
-        @include device(small) {
-            margin-left: 100px;
-            width: 150px;
-        }
+    @include device(small) {
+      margin-left: 100px;
+      width: 150px;
     }
+  }
 }
 
+// Contato
+.contato {
+  margin-top: 120px;
+  margin-bottom: 120px;
+  @include device(small) {
+    margin-top: 60px;
+    margin-bottom: 60px;
+  }
+  form {
+    label {
+      @include tipografia-1(18);
+      display: block;
+    }
+    input[type="text"],
+    textarea {
+      @include tipografia-1(18);
+      color: $cor-titulos;
+      width: 100%;
+      padding: 0 5px;
+      height: 40px;
+      border: 2px solid $cor-bordas;
+      background: transparent;
+      margin-bottom: 1em;
+      &:hover,
+      &:focus {
+        outline: none;
+        border-color: $cor-secundaria;
+      }
+    }
+    textarea {
+      height: 120px;
+    }
+  }
+}
 
+input[type="button"] {
+  @include tipografia-1(18);
+  cursor: pointer;
+  color: $cor-titulos;
+  text-transform: uppercase;
+  border: 2px solid $cor-secundaria;
+  background: transparent;
+  display: block;
+  width: 200px;
+  padding-top: 5px;
+  @include box-shadow(5px 5px 0px 0px $cor-secundaria);
+  transition: 0.3s;
+  &:hover {
+    @include box-shadow(1px 1px 0px 0px $cor-secundaria);
+  }
+}
+
+.contato-info {
+  display: inline-block;
+  color: $cor-secundaria;
+  margin-top: 2em;
+  margin-bottom: 3em;
+  @include device(large) {
+    float: right;
+    text-align: right;
+    margin-top: -3em;
+  }
+}
+
+.contato-mapa {
+    display: block;
+    @include box-shadow(0 0 0 10px $cor-secundaria);
+    clear: both;
+    img {
+        width: 100%;
+    }
+}
