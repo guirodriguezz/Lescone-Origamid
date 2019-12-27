@@ -265,3 +265,23 @@ input[type="button"] {
         width: 100%;
     }
 }
+
+// Footer
+footer {
+    padding: 20px 0;
+    background: $cor-titulos;
+    @include box-shadow(0 0 0 10px $cor-titulos); 
+    p {
+        color: $cor-primaria;
+        @include device(small) {
+            text-align: center;
+        }
+    }
+    a img {
+        float: right;
+        @include device(small) {
+            float: none;
+            margin: 20px auto;
+        }
+    }
+}
